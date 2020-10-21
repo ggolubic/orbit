@@ -17,8 +17,10 @@ jobs:
       - name: Restore lerna
         uses: actions/cache@v2
         with:
-          path: "**/node_modules"
-          key: ${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          path: |
+            node_modules
+            packages/*/node_modules
+          key: ${{ runner.os }}-orbit-${{ hashFiles('**/yarn.lock') }}
 
       - name: Install dependencies
         run: yarn install && yarn bootstrap
